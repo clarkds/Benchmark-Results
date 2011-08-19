@@ -1,0 +1,19 @@
+  norm. resid      resid           machep         x(1)          x(n)
+  1.81126487E+00  1.07958913E-05  1.19209290E-07  1.00000679E+00  1.00000238E+00
+
+
+    times are reported for matrices of order   100
+      sgefa      sgesl      total     mflops       unit      ratio
+ times for array with leading dimension of 201
+  3.125E-02  0.000E+00  3.125E-02  2.197E+01  9.102E-02  5.580E-01
+  3.906E-02  0.000E+00  3.906E-02  1.758E+01  1.138E-01  6.976E-01
+  3.906E-02  0.000E+00  3.906E-02  1.758E+01  1.138E-01  6.975E-01
+  4.062E-02  0.000E+00  4.062E-02  1.690E+01  1.183E-01  7.254E-01
+
+ times for array with leading dimension of 200
+  3.906E-02  0.000E+00  3.906E-02  1.758E+01  1.138E-01  6.976E-01
+  3.906E-02  7.812E-03  4.688E-02  1.465E+01  1.365E-01  8.371E-01
+  3.906E-02  0.000E+00  3.906E-02  1.758E+01  1.138E-01  6.975E-01
+  4.141E-02  7.812E-04  4.219E-02  1.628E+01  1.229E-01  7.533E-01
+  end of tests -- this version dated 10/12/92
+

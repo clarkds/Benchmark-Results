@@ -1,0 +1,65 @@
+Test 1
+
+The following parameter values will be used:
+
+N      :    4000     6000     8000    10000 
+NB     :     160      180      200      220 
+PMAP   : Row-major process mapping
+P      :       2 
+Q      :       2 
+PFACT  :   Right 
+NBMIN  :       4        8 
+NDIV   :       2 
+RFACT  :   Crout 
+BCAST  :  1ringM 
+DEPTH  :       1 
+SWAP   : Mix (threshold = 64)
+L1     : transposed form
+U      : transposed form
+EQUIL  : yes
+ALIGN  : 8 double precision words
+
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4        4000   160     2     2              34.54              1.236e+00
+WR11C2R8        4000   160     2     2              34.51              1.237e+00
+WR11C2R4        4000   180     2     2              34.81              1.226e+00
+WR11C2R8        4000   180     2     2              34.74              1.229e+00
+WR11C2R4        4000   200     2     2              35.91              1.189e+00
+WR11C2R8        4000   200     2     2              36.14              1.181e+00
+WR11C2R4        4000   220     2     2              36.36              1.174e+00
+WR11C2R8        4000   220     2     2              36.37              1.174e+00
+WR11C2R4        6000   160     2     2             108.20              1.331e+00
+WR11C2R8        6000   160     2     2             107.79              1.336e+00
+WR11C2R4        6000   180     2     2             104.50              1.379e+00
+WR11C2R8        6000   180     2     2             104.94              1.373e+00
+WR11C2R4        6000   200     2     2             109.45              1.316e+00
+
+Test 2
+
+The following parameter values will be used:
+
+N      :    8000 
+NB     :     180 
+PMAP   : Row-major process mapping
+P      :       2 
+Q      :       2 
+PFACT  :   Right 
+NBMIN  :       4 
+NDIV   :       2 
+RFACT  :   Crout 
+BCAST  :  1ringM 
+DEPTH  :       1 
+SWAP   : Mix (threshold = 64)
+L1     : transposed form
+U      : transposed form
+EQUIL  : yes
+ALIGN  : 8 double precision words
+
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4        8000   180     2     2             237.11              1.440e+00
+================================================================================
+

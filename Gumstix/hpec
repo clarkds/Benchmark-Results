@@ -1,0 +1,33 @@
+TDFIR
+Dataset 1: 23.3582 s, 11.4921 Mflops/s
+Dataset 2: 0.1712 s, 11.4838 Mflops/s
+FDFIR
+Dataset 1: 4.1147 s, 8.1549 Mflops/s
+Dataset 2: 0.26407 s, 8.376 Mflops/s
+QR
+Dataset 1: 30.7127 s, 12.9371 Mflops/s
+Dataset 2: 2.3149 s, 13.1874 Mflops/s
+Dataset 3: 3.3909 s, 13.2709 Mflops/s
+SVD
+Dataset 1: 12.5074 s, 10.6082 Mflops/s
+Dataset 2: 1.9512 s, 11.4723 Mflops/s
+Dataset 3: 15.6686 s, 12.226 Mflops/s
+CFAR
+Dataset 1: 0.014954 s, 11.5041 Mflops/s
+Dataset 2: 12.4504 s, 12.0902 Mflops/s
+Dataset 3: 3.3803 s, 12.1443 Mflops/s
+Dataset 4: 1.4654 s, 12.1063 Mflops/s
+PM
+Dataset 1: 0.15543 s, 7.7399 Mflops/s
+Dataset 2: 1.4581 s, 9.3237 Mflops/s
+GA
+Dataset 1: 0.0011056 s, 10.5176 Mflops/s
+Dataset 2: 0.036751 s, 13.7186 Mflops/s
+Dataset 3: 0.0025685 s, 6.026 Mflops/s
+Dataset 4: 0.032359 s, 3.5223 Mflops/s
+CT
+Dataset 1: 0.051178 s, 39.0793 MBytes/s
+Dataset 2: 1.2878 s, 23.2953 MBytes/s
+DB
+Dataset 1: 0.10352 s, 4250.579 Transactions/s
+Dataset 2: 2.1384 s, 327.3439 Transactions/s

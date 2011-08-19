@@ -1,0 +1,135 @@
+Filename: DataFileFormat.txt
+
+Authors:  Edmund L. Wong and Ryan Haney
+	  MIT Lincoln Laboratory
+
+Description:
+	  The following document gives a description of the data file
+	  format used by the HPEC Challenge Kernel Benchmarks and utilities.
+
+Contents:
+	  Introduction
+	  Data File Format and Contents
+	  Reading and Writing Data Files
+
+
+
+ Copyright (c) 2006, Massachusetts Institute of Technology
+ All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are  
+ met:
+     * Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+     * Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+     * Neither the name of the Massachusetts Institute of Technology nor  
+       the names of its contributors may be used to endorse or promote 
+       products derived from this software without specific prior written 
+       permission.
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF  
+ THE POSSIBILITY OF SUCH DAMAGE.
+
+
+Introduction:
+-------------------------------------------------------------------------------
+This document defines the format of the data files used by the ANSI C versions 
+of the kernel benchmarks and their utilities, and describes how to read and 
+write data.  
+
+
+
+Data File Format and Contents
+-------------------------------------------------------------------------------
+The following table specifies the contents of a data file that contains n 
+words of raw data:
+
+     --------------------------------------------------------------------
+    | WORD OFFSET        | DESCRIPTION                                   |
+    |====================================================================|
+    | Word 0             | Endian indicator (0xdeadbeef)                 |
+    |--------------------+-----------------------------------------------|
+    | Word 1             | Options (bits 0-31)                           |
+    |                    | Bit 1: complex flag (1 if complex, 0 if real) |
+    |                    | Bits 16-31: the version number                |
+    |--------------------+-----------------------------------------------|
+    | Word 2             | The number of dimensions, d, in the data      |
+    |--------------------+-----------------------------------------------|
+    | Words 3 to d+2     | Size of each dimension                        |
+    |--------------------+-----------------------------------------------|
+    | Words d+3 to n+d+2 | Actual raw data                               |
+     --------------------------------------------------------------------
+
+The endian indicator is to allow kernels to use data files that have been 
+generated on platforms that have the reverse endianness.  The options bits 
+specify characteristics about the data file.  The two pieces of data that are 
+currently stored here are the version number of the data file, which is used 
+to ensure compatibility, and a flag telling the kernel whether the data stored 
+is complex or not.
+
+The next few words are the number of dimensions and the magnitude of each 
+dimension.  This data is placed as words 2 to d+2 for d-dimensional data.  
+For example, for a data cube of size 16 x 32 x 64, words 2 through 
+5 are "3 16 32 64".
+
+Finally the raw data follows.  The data is stored in row-major format.
+
+
+
+Reading and Writing Data Files
+-------------------------------------------------------------------------------
+Data files can be read or written via C or Matlab.  In C, functions have been
+provided within the PcaCArray package.  The following example will read in
+data, perform an activity on the data, then write the result to a new file.
+
+C Example:
+
+   #include "PcaCArray.h"
+   
+     ...
+
+   /* Declare PcaCArrays for the float data type. */
+   PcaCArrayFloat dataIn, dataOut;
+
+   /* Read data into the PcaCArray dataIn from the file inData.dat. */
+   readFromFile(float, "inData.dat", dataIn);
+
+   /* Perform an operation on the data and assign to dataOut. */
+   doSomething(dataOut, dataIn);
+
+   /* Write the data in the PcaCArray dataOut to the file outData.dat. */
+   writeToFile(float,  "outData.dat", dataOut);
+
+     ...
+  
+
+Within Matlab, the functions readFile and writeFile have been provided.  The 
+following example will mimic the C example.
+
+Matlab Example:
+
+   % Read data into the variable dataIn, from the file inData.dat
+   dataIn = readFile("inData.dat", 'float32');
+
+   % Perform an operation on the data and assign to dataOut.
+   dataOut = doSomething(dataIn);
+
+   % Write the data in dataOut to the file outData.dat.
+   writeFile("outData.dat", dataOut, 'float32');
+
+
+See documentation within "include/PcaCArray.h" for more information on reading 
+and writing data in C, and "matlab/readFile.m" or "matlab/writeFile.m" for
+more information on reading and writing data in Matlab.
